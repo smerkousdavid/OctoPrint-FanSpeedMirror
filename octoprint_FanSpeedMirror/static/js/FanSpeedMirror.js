@@ -12,13 +12,13 @@ $(function() {
 		self.control = parameters[1];
 		self.loginState = parameters[2];
 
-		self.settings.M106command = new ko.observable("");
-		self.settings.m107command = new ko.observable("");
+		self.settings.M126command = new ko.observable("");
+		self.settings.m127command = new ko.observable("");
 
 		self.updateSettings = function () {
 			try {
-				self.settings.M106command(self.settings.settings.plugins.FanSpeedMirror.M106command());
-				self.settings.M107command(self.settings.settings.plugins.FanSpeedMirror.M107command());
+				self.settings.M126command(self.settings.settings.plugins.FanSpeedMirror.M126command());
+				self.settings.M127command(self.settings.settings.plugins.FanSpeedMirror.M127command());
 			}
 			catch (error) {
 				console.log(error);
