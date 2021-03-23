@@ -7,7 +7,7 @@ Mirror the parameter(s) of GCode commands M126, M127 to scripts on the OctoPrint
 Install via the bundled [Plugin Manager](https://github.com/foosel/OctoPrint/wiki/Plugin:-Plugin-Manager)
 or manually using this URL:
 
-    https://github.com/b-morgan/OctoPrint-FanSpeedMirror/archive/master.zip
+    https://github.com/smerkousdavid/OctoPrint-FanSpeedMirror/archive/master.zip
 
 ## Configuration
 
