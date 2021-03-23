@@ -18,7 +18,7 @@ plugin_version = "1.3.1"
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
-plugin_description = """Mirror the parameter(s) of GCode commands M106, M107 to scripts on the OctoPrint host"""
+plugin_description = """Mirror the parameter(s) of GCode commands M126, M127 to scripts on the OctoPrint host"""
 
 # The plugin's author. Can be overwritten within OctoPrint's internal data via __plugin_author__ in the plugin module
 plugin_author = "Brad Morgan"
@@ -27,7 +27,7 @@ plugin_author = "Brad Morgan"
 plugin_author_email = "brad-morgan@comcast.net"
 
 # The plugin's homepage URL. Can be overwritten within OctoPrint's internal data via __plugin_url__ in the plugin module
-plugin_url = "https://github.com/b-morgan/OctoPrint-FanSpeedMirror"
+plugin_url = "https://github.com/smerkousdavid/OctoPrint-FanSpeedMirror"
 
 # The plugin's license. Can be overwritten within OctoPrint's internal data via __plugin_license__ in the plugin module
 plugin_license = "AGPLv3"
