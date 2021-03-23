@@ -1,6 +1,6 @@
 # OctoPrint-FanSpeedMirror
 
-Mirror the parameter(s) of GCode commands M106, M107 to scripts on the OctoPrint host
+Mirror the parameter(s) of GCode commands M126, M127 to scripts on the OctoPrint host (Intended for Sailfish firmware cooler fan and not primary fan unlike original repo from b-morgan)
 
 ## Setup
 
@@ -11,13 +11,9 @@ or manually using this URL:
 
 ## Configuration
 
-* Enter a command that will be sent to the OctoPrint host when an M106 is seen in the GCode. The value of the M106 S parameter will be appended to this command
+* Enter a command that will be sent to the OctoPrint host when an M106 is seen in the GCode. The value of the M126 S parameter will be appended to this command
 
 * Enter a command that will be sent to the OctoPrint host when an M107 is seen in the GCode
 
-* Example bash scripts can be found in extras
-
-* The Wiki contains some background and additional documentation
-
-![](./extras/settings.png)
+* Look at original repo at b-morgan/OctoPrint-FanSpeedMirror
 
