@@ -13,8 +13,8 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 
 	def __init__(self):
 #		self._logger.info("__init__")
-		self.M106command=""
-		self.M107command=""
+		self.M126command=""
+		self.M127command=""
 
 	def on_after_startup(self):
 #		self._logger.info("on_after_startup")
@@ -23,17 +23,17 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 	def get_settings_defaults(self):
 #		self._logger.info("get_settings_defaults")
 		return dict(
-			M106command="",
-			M107command=""
+			M126command="",
+			M127command=""
 		)
 
 	def on_settings_save(self, data):
 #		self._logger.info("on_settings_save")
 		s = self._settings
-		if "M106command" in data.keys():
-			s.set(["M106command"], data["M106command"])
-		if "M107command" in data.keys():
-			s.set(["M107command"], data["M107command"])
+		if "M126command" in data.keys():
+			s.set(["M126command"], data["M126command"])
+		if "M127command" in data.keys():
+			s.set(["M127command"], data["M127command"])
 		self.get_settings_updates()
 		#clean up settings if everything's default
 		self.on_settings_cleanup()
@@ -80,28 +80,22 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 
 	def get_settings_updates(self):
 #		self._logger.info("get_settings_updates")
-		self.M106command = self._settings.get(["M106command"])
-		self.M107command = self._settings.get(["M107command"])
+		self.M126command = self._settings.get(["M126command"])
+		self.M127command = self._settings.get(["M127command"])
 
 	def mirror_fan(self, comm_instance, phase, cmd, cmd_type, gcode, *args, **kwargs):
-		if gcode and gcode.startswith('M106'):
-			fanPwm = re.search("S(\d+\.?\d*)", cmd)
-			if fanPwm and fanPwm.group(1):
-				fanPwm = fanPwm.group(1)
-				if self.M106command != "":
-					cmd_line = self.M106command + " " + str(fanPwm)
-					self._logger.debug("Executing (" + cmd_line + ")")
-					try:
-						r = subprocess.call([self.M106command, str(fanPwm)])
-						if r < 0:
-							self._logger.error("Error executing command %s: %s" % (cmd_line, r))
-					except OSError as e:
-						self._logger.exception("Exception executing command %s: %s" % (cmd_line, e))
-				else:
-					self._logger.debug("M106command is empty")
-		elif gcode and gcode.startswith('M107'):
-			if self.M107command != "":
-				cmd_line = self.M107command
+		if gcode and gcode.startswith('M126'):
+			cmd_line = self.M126command
+			self._logger.debug("Executing (" + cmd_line + ")")
+			try:
+				r = subprocess.call([self.M126command])
+				if r < 0:
+					self._logger.error("Error executing command %s: %s" % (cmd_line, r))
+			except OSError as e:
+				self._logger.exception("Exception executing command %s: %s" % (cmd_line, e))
+		elif gcode and gcode.startswith('M127'):
+			if self.M127command != "":
+				cmd_line = self.M127command
 				self._logger.debug("Executing (" + cmd_line + ")")
 				try:
 					r = subprocess.call(cmd_line)
@@ -110,7 +104,7 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 				except OSError as e:
 					self._logger.exception("Exception executing command %s: %s" % (cmd_line, e))
 			else:
-				self._logger.debug("M107command is empty")
+				self._logger.debug("M127command is empty")
 
 	def get_update_information(self):
 		# Define the configuration for your plugin to use with the Software Update
@@ -123,12 +117,12 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 
 				# version check: github repository
 				type="github_release",
-				user="b-morgan",
+				user="smerkousdavid",
 				repo="OctoPrint-FanSpeedMirror",
 				current=self._plugin_version,
 
 				# update method: pip
-				pip="https://github.com/b-morgan/OctoPrint-FanSpeedMirror/archive/{target_version}.zip"
+				pip="https://github.com/smerkousdavid/OctoPrint-FanSpeedMirror/archive/{target_version}.zip"
 			)
 		)
 
